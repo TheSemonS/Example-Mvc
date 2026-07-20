@@ -1,4 +1,21 @@
+using DataBases.Contexts;
+using Microsoft.EntityFrameworkCore;
+using Repositories.Api;
+using Services.Api;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("Default");
+builder.Services.AddDbContext<DbContextGames>(options =>
+{
+    options.UseSqlServer(connectionString);
+});
+
+
+builder.Services.AddScoped<IRepositoryGame, RepositoryGame>();
+builder.Services.AddScoped<IServiceGame, ServiceGame>();
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

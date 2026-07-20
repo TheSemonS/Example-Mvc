@@ -1,3 +1,6 @@
 <Solution>
+  <Project Path="DataBases/DataBases.csproj" Id="180123a1-010d-4608-8827-b7e6628a5f8c" />
   <Project Path="MvcApp/MvcApp.csproj" />
+  <Project Path="Repositories/Repositories.csproj" Id="9b50eed3-3449-45cc-97b5-58b5152d9e81" />
+  <Project Path="Services/Services.csproj" Id="5c6256ad-3079-4e39-9faf-c3a2cdca316b" />
 </Solution>

@@ -11,16 +11,6 @@ namespace MvcApp.Controllers
             return View();
         }
 
-        public IActionResult Games()
-        {
-            var games = new List<Game>();
-
-            games.Add(new Game() { Id = 1, Name = "Game 1" });
-            games.Add(new Game() { Id = 2, Name = "Game 2" });
-            games.Add(new Game() { Id = 3, Name = "Game 3" });
-            return View(games);
-        }
-
         public IActionResult Privacy()
         {
             return View();
