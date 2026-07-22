@@ -41,10 +41,12 @@ namespace Services.Api
             }
             if (string.IsNullOrWhiteSpace(request.Name))
             {
+                logger.LogWarning(GameTexts.Messages.Validation.NAME_EMPTY);
                 throw new Exception(GameTexts.Messages.Validation.NAME_EMPTY);
             }
             if (request.Name.Length > 50)
             {
+                logger.LogWarning(GameTexts.Messages.Validation.NAME_EXCEEDS_LIMIT);
                 throw new Exception(GameTexts.Messages.Validation.NAME_EXCEEDS_LIMIT);
             }
             
@@ -73,18 +75,22 @@ namespace Services.Api
 
             if (request == null)
             {
+                logger.LogWarning(GameTexts.Messages.Validation.REQUAST_NULL);
                 throw new Exception(GameTexts.Messages.Validation.REQUAST_NULL);
             }
             if (request.Id <= 0)
             {
+                logger.LogWarning(GameTexts.Messages.Validation.ID_NOT_VALID);
                 throw new Exception(GameTexts.Messages.Validation.ID_NOT_VALID);
             }
             if (string.IsNullOrWhiteSpace(request.Name))
             {
+                logger.LogWarning(GameTexts.Messages.Validation.NAME_EMPTY);
                 throw new Exception(GameTexts.Messages.Validation.NAME_EMPTY);
             }
             if (request.Name.Length > 50)
             {
+                logger.LogWarning(GameTexts.Messages.Validation.NAME_EXCEEDS_LIMIT);
                 throw new Exception(GameTexts.Messages.Validation.NAME_EXCEEDS_LIMIT);
             }
 
@@ -96,6 +102,7 @@ namespace Services.Api
 
                 if (original == default)
                 {
+                    logger.LogWarning(string.Format(GameTexts.Messages.Validation.NOT_FOUND_BY_ID, request.Id));
                     throw new Exception(string.Format(GameTexts.Messages.Validation.NOT_FOUND_BY_ID, request.Id));
                 }
 
@@ -120,10 +127,12 @@ namespace Services.Api
 
             if (request == null)
             {
+                logger.LogWarning(GameTexts.Messages.Validation.REQUAST_NULL);
                 throw new Exception(GameTexts.Messages.Validation.REQUAST_NULL);
             }
             if (request.Id <= 0)
             {
+                logger.LogWarning(GameTexts.Messages.Validation.ID_NOT_VALID);
                 throw new Exception(GameTexts.Messages.Validation.ID_NOT_VALID);
             }
 
@@ -135,6 +144,7 @@ namespace Services.Api
 
                 if (original == default)
                 {
+                    logger.LogWarning(string.Format(GameTexts.Messages.Validation.NOT_FOUND_BY_ID, request.Id));
                     throw new Exception(string.Format(GameTexts.Messages.Validation.NOT_FOUND_BY_ID, request.Id));
                 }
 
@@ -157,10 +167,12 @@ namespace Services.Api
 
             if (request == null)
             {
+                logger.LogWarning(GameTexts.Messages.Validation.REQUAST_NULL);
                 throw new Exception(GameTexts.Messages.Validation.REQUAST_NULL);
             }
             if (request.Id <= 0)
             {
+                logger.LogWarning(GameTexts.Messages.Validation.ID_NOT_VALID);
                 throw new Exception(GameTexts.Messages.Validation.ID_NOT_VALID);
             }
 
@@ -170,6 +182,7 @@ namespace Services.Api
 
                 if (original == default)
                 {
+                    logger.LogWarning(string.Format(GameTexts.Messages.Validation.NOT_FOUND_BY_ID, request.Id));
                     throw new Exception(string.Format(GameTexts.Messages.Validation.NOT_FOUND_BY_ID, request.Id));
                 }
 
@@ -246,10 +259,12 @@ namespace Services.Api
 
             if (request == null)
             {
+                logger.LogWarning(GameTexts.Messages.Validation.REQUAST_NULL);
                 throw new Exception(GameTexts.Messages.Validation.REQUAST_NULL);
             }
             if (request.Id <= 0)
             {
+                logger.LogWarning(GameTexts.Messages.Validation.ID_NOT_VALID);
                 throw new Exception(GameTexts.Messages.Validation.ID_NOT_VALID);
             }
             try
@@ -257,6 +272,7 @@ namespace Services.Api
                 var original = await unitOfWork.Games.GetSignalOrDefaultAsync(request.Id, token);
                 if (original == default)
                 {
+                    logger.LogWarning(string.Format(GameTexts.Messages.Validation.NOT_FOUND_BY_ID, request.Id));
                     throw new Exception(string.Format(GameTexts.Messages.Validation.NOT_FOUND_BY_ID, request.Id));
                 }
                 var response = new GameDisplayUpdateResponse 
@@ -280,10 +296,12 @@ namespace Services.Api
 
             if (request == null)
             {
+                logger.LogWarning(GameTexts.Messages.Validation.REQUAST_NULL);
                 throw new Exception(GameTexts.Messages.Validation.REQUAST_NULL);
             }
             if (request.Id <= 0)
             {
+                logger.LogWarning(GameTexts.Messages.Validation.ID_NOT_VALID);
                 throw new Exception(GameTexts.Messages.Validation.ID_NOT_VALID);
             }
             try
@@ -291,6 +309,7 @@ namespace Services.Api
                 var original = await unitOfWork.Games.GetSignalOrDefaultAsync(request.Id, token);
                 if (original == default)
                 {
+
                     throw new Exception(string.Format(GameTexts.Messages.Validation.NOT_FOUND_BY_ID, request.Id));
                 }
                 var response = new GameDisplayDeleteResponse 
