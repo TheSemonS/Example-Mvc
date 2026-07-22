@@ -37,5 +37,31 @@
 
     }
 
+    public class GameDisplayCreateResponse
+    {
+        public string Name { get; set; }
+    }
+
+    public class GameDisplayUpdateResponse
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class GameDisplayDeleteResponse
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class GameDisplayUpdateRequest
+    {
+        public int Id { get; set; }
+    }
+
+    public class GameDisplayDeleteRequest
+    {
+        public int Id { get; set; }
+    }
 
 }

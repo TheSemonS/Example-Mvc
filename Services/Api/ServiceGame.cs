@@ -7,6 +7,10 @@ namespace Services.Api
 {
     public interface IServiceGame
     {
+        Task<GameDisplayCreateResponse> DisplayCreatePageAsync(CancellationToken token = default);
+        Task<GameDisplayUpdateResponse> DisplayUpdatePageAsync(GameDisplayUpdateRequest request, CancellationToken token = default);
+        Task<GameDisplayDeleteResponse> DisplayDeletePageAsync(GameDisplayDeleteRequest request, CancellationToken token = default);
+
         Task CreateAsync(GameCreateRequest request, CancellationToken token = default);
         Task UpdateAsync(GameUpdateRequest request, CancellationToken token = default);
         Task DeleteAsync(GameDeleteRequest request, CancellationToken token = default);
@@ -32,6 +36,7 @@ namespace Services.Api
 
             if (request == null)
             {
+                logger.LogWarning(GameTexts.Messages.Validation.REQUAST_NULL);
                 throw new Exception(GameTexts.Messages.Validation.REQUAST_NULL);
             }
             if (string.IsNullOrWhiteSpace(request.Name))
@@ -213,5 +218,94 @@ namespace Services.Api
             }
         }
 
+        public async Task<GameDisplayCreateResponse> DisplayCreatePageAsync(CancellationToken token = default)
+        {
+            logger.LogInformation(GameTexts.Messages.Start.DISPLAY_CREATING);
+
+            try
+            {
+                var original = unitOfWork.Games.GetNew();
+                var response = new GameDisplayCreateResponse { Name = original.Name };
+                logger.LogInformation(GameTexts.Messages.Succses.DISPLAY_CREATING_COMPLETED);
+                return await Task.FromResult(response);
+            }
+            catch (Exception exception)
+            {
+                logger.LogError(exception, GameTexts.Messages.Error.DISPLAY_CREATING_ERROR);
+
+                throw;
+            }
+
+
+        }
+
+        public async Task<GameDisplayUpdateResponse> DisplayUpdatePageAsync(GameDisplayUpdateRequest request, CancellationToken token = default)
+        {
+            logger.LogInformation(GameTexts.Messages.Start.DISPLAY_UPDATING);
+
+
+            if (request == null)
+            {
+                throw new Exception(GameTexts.Messages.Validation.REQUAST_NULL);
+            }
+            if (request.Id <= 0)
+            {
+                throw new Exception(GameTexts.Messages.Validation.ID_NOT_VALID);
+            }
+            try
+            {
+                var original = await unitOfWork.Games.GetSignalOrDefaultAsync(request.Id, token);
+                if (original == default)
+                {
+                    throw new Exception(string.Format(GameTexts.Messages.Validation.NOT_FOUND_BY_ID, request.Id));
+                }
+                var response = new GameDisplayUpdateResponse 
+                { 
+                    Id = request.Id,
+                    Name = original.Name 
+                };
+                logger.LogInformation(GameTexts.Messages.Succses.DISPLAY_UPDATING_COMPLETED);
+                return response;
+            }
+            catch (Exception exception)
+            {
+                logger.LogError(exception, GameTexts.Messages.Error.DISPLAY_UPDATING_ERROR);
+                throw;
+            }
+        }
+
+        public async Task<GameDisplayDeleteResponse> DisplayDeletePageAsync(GameDisplayDeleteRequest request, CancellationToken token = default)
+        {
+            logger.LogInformation(GameTexts.Messages.Start.DISPLAY_DELETING);
+
+            if (request == null)
+            {
+                throw new Exception(GameTexts.Messages.Validation.REQUAST_NULL);
+            }
+            if (request.Id <= 0)
+            {
+                throw new Exception(GameTexts.Messages.Validation.ID_NOT_VALID);
+            }
+            try
+            {
+                var original = await unitOfWork.Games.GetSignalOrDefaultAsync(request.Id, token);
+                if (original == default)
+                {
+                    throw new Exception(string.Format(GameTexts.Messages.Validation.NOT_FOUND_BY_ID, request.Id));
+                }
+                var response = new GameDisplayDeleteResponse 
+                { 
+                    Id = original.Id,
+                    Name = original.Name
+                };
+                logger.LogInformation(GameTexts.Messages.Succses.DISPLAY_DELETING_COMPLETED);
+                return response;
+            }
+            catch (Exception exception)
+            {
+                logger.LogError(exception, GameTexts.Messages.Error.DISPLAY_DELETING_ERROR);
+                throw;
+            }
+        }
     }
 }

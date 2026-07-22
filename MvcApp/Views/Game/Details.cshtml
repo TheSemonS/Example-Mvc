@@ -1,0 +1,57 @@
+﻿@model GameGetByResponse
+@{
+    ViewData["Title"] = "Детали игры";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <!-- Кнопка возврата к списку -->
+            <div class="mb-3">
+                <a asp-action="Index" class="text-decoration-none text-muted small d-inline-flex align-items-center">
+                    <i class="bi bi-arrow-left me-2"></i> Вернуться к каталогу
+                </a>
+            </div>
+
+            <!-- Основная карточка с информацией -->
+            <div class="card shadow border-0 p-4 mb-4">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle me-2">
+                            ID: @Model.Id
+                        </span>
+                    </div>
+
+                    <h1 class="display-6 fw-bold text-dark mb-4">@Model.Name</h1>
+
+                    <!-- Дополнительные поля (если есть) можно выводить списком ниже -->
+                    <div class="row g-3 py-3 border-top border-bottom border-light">
+                        <div class="col-sm-4">
+                            <span class="text-muted d-block small">Статус записи</span>
+                            <span class="text-success d-inline-flex align-items-center mt-1">
+                                <i class="bi bi-check-circle-fill me-1"></i> Активна
+                            </span>
+                        </div>
+                        <!-- Место для других полей, например, Жанр, Дата выхода и т.д. -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Панель управления (Кнопки действий) -->
+            <div class="d-flex justify-content-between align-items-center bg-light p-3 rounded shadow-sm">
+                <a asp-action="List" class="btn btn-outline-secondary">
+                    Назад к списку
+                </a>
+                <div class="d-flex gap-2">
+                    <a asp-action="Update" asp-route-id="@Model.Id" class="btn btn-primary shadow-sm px-4">
+                        <i class="bi bi-pencil me-2"></i>Редактировать
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger shadow-sm px-4">
+                        <i class="bi bi-trash me-2"></i>Удалить
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

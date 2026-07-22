@@ -12,27 +12,48 @@ namespace MvcApp.Controllers
         {
             this.service = service;
         }
-
+        [HttpGet]
+        public async Task<IActionResult> Create(CancellationToken token)
+        {
+            var response = await service.DisplayCreatePageAsync(token);
+            return View(response);
+        }
         [HttpPost]
         public async Task<IActionResult> Create(GameCreateRequest request, CancellationToken token)
         {
             await service.CreateAsync(request, token);
-            return View("List");
+            return RedirectToAction("List");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(GameDisplayUpdateRequest request, CancellationToken token)
+        {
+            var response = await service.DisplayUpdatePageAsync(request, token);
+            return View(response);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Update(GameUpdateRequest request, CancellationToken token)
         {
             await service.UpdateAsync(request, token);
-            return View("List");
+            return RedirectToAction("List");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(GameDisplayDeleteRequest request, CancellationToken token)
+        {
+            var response = await service.DisplayDeletePageAsync(request, token);
+            return View(response);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Delete(GameDeleteRequest request, CancellationToken token)
         {
             await service.DeleteAsync(request, token);
-            return View("List");
+            return RedirectToAction("List");
         }
         [HttpGet]
-        public async Task<IActionResult> Deteils(GameGetByRequest request, CancellationToken token)
+        public async Task<IActionResult> Details(GameGetByRequest request, CancellationToken token)
         {
             var response = await service.GetByAsync(request, token);
             return View(response);

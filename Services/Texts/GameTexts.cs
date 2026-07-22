@@ -12,6 +12,11 @@
                 public const string GETBY = "Начало выполнения получения игры по ID";
                 public const string GETALL = "Начало выполнения получения списка игр";
 
+                public const string DISPLAY_CREATING = "Начало отображения страницы создания игры";
+                public const string DISPLAY_UPDATING = "Начало отображения страницы обновления игры";
+                public const string DISPLAY_DELETING = "Начало отображения страницы удаления игры";
+
+
             }
             public static class Succses
             {
@@ -20,6 +25,11 @@
                 public const string DELETING_COMPLETED = "Игра успешно удалена";
                 public const string GETBY_COMPLETED = "Игра успешно получена по ID";
                 public const string GETALL_COMPLETED = "Список игр успешно получен";
+
+                public const string DISPLAY_CREATING_COMPLETED = "Конец отображения страницы создания игры";
+                public const string DISPLAY_UPDATING_COMPLETED = "Конец отображения страницы обновления игры";
+                public const string DISPLAY_DELETING_COMPLETED = "Конец отображения страницы удаления игры";
+
             }
             public static class Error
             {
@@ -29,6 +39,11 @@
                 public const string DELETING_ERROR = "Не удалось удалить игру";
                 public const string GETBY_ERROR = "Не удалось получить игру по ID";
                 public const string GETALL_ERROR = "Не удалось получить список игр";
+
+                public const string DISPLAY_CREATING_ERROR = "Не удалось отобразить страницу создания игры";
+                public const string DISPLAY_UPDATING_ERROR = "Не удалось отобразить страницу обновления игры";
+                public const string DISPLAY_DELETING_ERROR = "Не удалось отобразить страницу удаления игры";
+
             }
             public static class Validation
             {
